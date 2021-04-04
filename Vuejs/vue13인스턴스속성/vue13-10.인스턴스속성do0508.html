@@ -78,7 +78,7 @@
         //template: ``,
         methods: {
             reverseMsg: function (event) {
-                this.$set(this.$data, "methodscopy", this.message.split('').reverse().join(''));
+                this.$set(this.$data, "methodscopy", this.$data.message.split('').reverse().join(''));
             }
         },
         components: {
