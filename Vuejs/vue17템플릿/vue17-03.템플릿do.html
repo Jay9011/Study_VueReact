@@ -31,30 +31,73 @@
            ==> 같이
 
         3. app3. x-template 을 사용하여 템플릿을 지정하는 방법
-            < script type="text/x-template" id="template3">
+            <script type="text/x-template" id="template3">
                 <p>x-template을 이용한 데이터 출력. {{message3}} </p>
-            < /script>
+            </script>
            ==> 같이
     </xmp>
     <hr>
 
     <div>
         <div id="app1">
+            <!-- inline template -->
             <p>{{ message }}</p>
         </div>
 
         <div id="app2">
+            <!-- template 속성을 이용 -->
             사랑해~~~
         </div>
 
         <div id="app3">
+            <!-- script 를 사용 -->
             사랑해~~~
         </div>
-
-        
+        <script type="text/x-template" id="template3">
+            <p>x-template을 이용한 데이터 출력. {{message3}} </p>
+        </script>
     </div>
 </body>
 
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app1",
+        data: {
+            message: "<i>콧수염 괄호를 이용한 데이터 출력</i>",
+        },
+    });
+    /*  template 를 사용하면 el에 해당하는 요소가 template 로 replace 된다.
+    */
+    new Vue({
+        /* edtmc^2w */
+        el: "#app2",
+        data: {
+            message2: "$data가 작동하는가?",
+        },
+        template: `
+        <i>
+            template 속성을 이용한 데이터 출력.
+            {{message2}}
+        </i>
+        `,
+    });
+    /*  script 를 사용하면 el에 해당하는 요소가
+        <script type="text/x-template"> 내에 있는 요소로 replace 된다.
+    */
+    new Vue({
+        /* edtmc^2w */
+        el: "#app3",
+        data: {
+            message3: "app3",
+        },
+        template: `#template3`,
+    });
+
+</script>
