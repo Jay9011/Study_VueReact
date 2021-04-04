@@ -63,3 +63,46 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            message: null,
+            methodscopy: null,
+            watchcopy: null,
+        },
+        //template: ``,
+        methods: {
+            reverseMsg: function (event) {
+                this.$set(this.$data, "methodscopy", this.message.split('').reverse().join(''));
+            }
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+            computedcopy: function () {
+                return this.$data.message ? this.$data.message.split('').reverse().join('') : '';
+            }
+        },
+        watch: {
+            message: function (value) {
+                // 모니터링하는 변수는 this.$data.message
+                // 해당 값은 value 로 넘어옴
+                this.$set(this.$data, "watchcopy", this.message.split('').reverse().join(''));
+            }
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
