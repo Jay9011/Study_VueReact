@@ -275,10 +275,10 @@
     <div id="app1">
         <ul id="menu1">
             <li v-for="(mainitem, i) in mainitems" v-bind:key="i">
-                <a href="#">{{mainitem.text}}</a>
+                <a href="#">{{mainitem.text + (i + 1)}}</a>
                 <ul>
                     <li v-for="(subitem, j) in mainitem.subitems" v-bind:key="j">
-                        <a href="#">{{subitem.text}}</a>
+                        <a href="#">{{subitem.text  + (i + 1) + "-" + (j + 1)}}</a>
                     </li>
                 </ul>
             </li>
@@ -301,27 +301,27 @@
         data: {
             mainitems: [
                 {
-                    text: "MENU1",
+                    text: "MENU",
                     subitems: [
-                        {text: "MENU1-1"},
-                        {text: "MENU1-2"},
+                        {text: "MENU"},
+                        {text: "MENU"},
                     ]
                 },
                 {
-                    text: "MENU2",
+                    text: "MENU",
                     subitems: [
-                        {text: "MENU2-1"},
-                        {text: "MENU2-2"},
-                        {text: "MENU2-3"},
-                        {text: "MENU2-4"},
+                        {text: "MENU"},
+                        {text: "MENU"},
+                        {text: "MENU"},
+                        {text: "MENU"},
                     ]
                 },
                 {
-                    text: "MENU3",
+                    text: "MENU",
                     subitems: [
-                        {text: "MENU3-1"},
-                        {text: "MENU3-2"},
-                        {text: "MENU3-3"},
+                        {text: "MENU"},
+                        {text: "MENU"},
+                        {text: "MENU"},
                     ]
                 },
             ]
