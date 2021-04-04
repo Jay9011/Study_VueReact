@@ -57,3 +57,58 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            sum1: 0,
+            numInput: 0,
+            sumInput: 0,
+            sum10: 0,
+        },
+        //template: ``,
+        methods: {
+            clickBtn1: function (event) {
+                console.log(event.target);
+                this.$set(this.$data, "sum1", this.$data.sum1 + 1);
+            },
+            clickBtnInput: function (event) {
+                console.log(event.target);
+                // Number()는 Number 객체의 생성자 함수다.
+                // 문자열을 숫자로 자동 형변환시킨다.
+                this.$set(this.$data, "sumInput", this.$data.sumInput + Number(this.$data.numInput));
+            },
+            clickBtn10: function (event) {
+                console.log(event.target);
+                // debugger
+                var num = Number(event.target.dataset["num"]);   // data-num = "10"
+                this.$data.sum10 = this.$data.sum10 + num;
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
