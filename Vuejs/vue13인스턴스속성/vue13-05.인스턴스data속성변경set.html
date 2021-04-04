@@ -110,3 +110,69 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            arr: [1, 2, 3, 4, 5],
+        },
+        //template: ``,
+        methods: {
+            change1: function(event) {
+                /* 1. this.$set 사용
+                    this.$data 에 직접 접근하는 경우 값을 새로 할당하지만 화면에 적용되지 않는다.
+                    (참조 주소가 바뀌지 않았기 때문에 리스너(defineProperty)가 작동하지 않기 때문...)
+                */
+                console.log(event.target);
+                // this.$data.arr[0] = 100;
+                this.$set(this.$data.arr, 0, 100)
+            },
+            change2: function(event) {
+                /*  2. Vue.set 사용
+                    this.$data 에 직접 접근하는 경우 값을 새로 할당하지만 화면에 적용되지 않는다.
+                    (참조 주소가 바뀌지 않았기 때문에 리스너(defineProperty)가 작동하지 않기 때문...)
+                */
+                console.log(event.target);
+                Vue.set(this.$data.arr, 1, 300)
+
+            },
+            change3: function(event) {
+                /*  3. splice(index, size) 사용.
+                    javascript의 Array.prototype.splice() 를 사용.
+                    복제 -> 변경 -> 재할당
+                */
+                console.log(event.target);
+                this.$data.arr.splice(0, 2);
+            },
+            change4: function(event) {
+                /*  4. spread 연산자 사용.
+                    전개 구문을 사용하면 배열이나 문자열과 같이 반복 가능한 문자를
+                    전개, 복사 할 수 있다.
+                */
+                console.log(event.target);
+                this.$data.arr = [500, ...this.$data.arr, 70];
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
