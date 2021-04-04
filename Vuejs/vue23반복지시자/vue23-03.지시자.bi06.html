@@ -37,6 +37,12 @@
     <hr>
 
     <div id="app" class="col-md-10 offset-md-1">
+        <div class="mb-3">
+            <label for="name">이름</label><input type="text" id="name" v-model:value="name" placeholder="이름">
+            <label for="tel">전화번호</label><input type="text" id="tel" v-model:value="tel" placeholder="전화번호">
+            <label for="address">주소</label><input type="text" id="address" v-model:value="address" placeholder="주소">
+            <button class="btn btn-primary" v-on:click="addData">추가</button>
+        </div>
         <table id="list" class="table-bordered">
             <thead>
                 <tr class="bg-warning text-white text-center">
@@ -56,12 +62,47 @@
             </tbody>
         </table>
     </div>
-
-
-    
-
 </body>
-
 </html>
-
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            name: "",
+            tel: "",
+            address: "",
+            contacts: [
+                    {
+                        name: "설현",
+                        tel: "010-3456-8200",
+                        address: "서현",
+                    },
+                    {
+                        name: "혜리",
+                        tel: "010-3456-8299",
+                        address: "서리",
+                    },
+                ]
+        },
+        //template: ``,
+        methods: {
+            addData: function (event) {
+                var arr = this.$data.contacts;
+                var name = this.$data.name;
+                var tel = this.$data.tel;
+                var address = this.$data.address;
+                this.$set(arr, arr.length,
+                {
+                    name,
+                    tel,
+                    address
+                });
+
+            }
+        },
+    });
+
+</script>
