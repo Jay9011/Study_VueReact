@@ -35,7 +35,7 @@
         Vue 인스턴스 내부에서 직접 이용되지 않고
         Vue 인스턴스와 data 속성에 주어진 객체 사이에 프록시를 두어 처리한다.
 
-      [참조] page 107~111
+      [참조] page 106~111
 
     문제 1. 각자
         v-on 지시자를 사용하여 input 태그에 값이 입력 될때마다
@@ -82,3 +82,56 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            mesg1: null,
+            // mesg2: null,
+            mesg3: null,
+        },
+        //template: ``,
+        methods: {
+            /*  key 값을 입력 할 때에는 문자열 접근하는 것이 좋다.
+                object["key"] <==
+            */
+            msgKey: function (event) {
+                console.log(event.target.value);
+                // this.$data.mesg1 = event.target.value;
+                this.$set(this.$data, "mesg1", event.target.value);
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+            /*  computed에 정의되는 메서드는 반드시 값을 return 해야 한다.
+            */
+            mesg2: function (){
+                return this.$data.mesg1 + " computed 에서 생성된 값"
+            },
+        },
+        watch: {
+            /*  watch에 등록할 때는 this.$data 에 있는 변수명을 그대로 사용해야 한다.
+                (data 를 참조하기 때문)
+            */
+            mesg1: function (value) {   // value === this.$data.mesg1
+                // value는 this.$data.mesg1 이 변경되었을 때만 전달되는 값.
+                // this.$data.mesg3 = value + " watch 에서 생성된 값";
+                this.$set(this.$data, "mesg3", value + " watch 에서 생성된 값");
+            },
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
