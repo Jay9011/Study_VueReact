@@ -141,10 +141,110 @@
 
     </div>
 
-    
-    
+
+
 </body>
 
 </html>
-
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            img_image3: undefined,
+            img_but1: "../images/but1.gif",
+            img_swap: "../images/img_swap_off.png",
+            img_select: "../images/apple.gif",
+        },
+        //template: ``,
+        methods: {
+            imageclick: function (event) {
+                this.$set(this.$data, "img_image3", event.target.href);
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            imageover: function (event) {
+                switch (event.target.id) {
+                    case "but1":
+                        this.$set(this.$data, "img_but1", "../images/but2.gif");
+                        break;
+                    case "img-swap":
+                        this.$set(this.$data, "img_swap", "../images/img_swap_on.png");
+                        break;
+                    default:
+                        break;
+                }
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            imageout: function (event) {
+                switch (event.target.id) {
+                    case "but1":
+                        this.$set(this.$data, "img_but1", "../images/but1.gif");
+                        break;
+                    case "img-swap":
+                        this.$set(this.$data, "img_swap", "../images/img_swap_off.png");
+                        break;
+                    default:
+                        break;
+                }
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            spanmouseover: function (event) {
+                event.target.style.backgroundColor = "yellow";
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            spanmousedown: function (event) {
+                event.target.style.backgroundColor = "blue";
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            spanmouseup: function (event) {
+                event.target.style.backgroundColor = "pink";
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            spanmouseout: function (event) {
+                event.target.style.backgroundColor = "red";
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            selectchange: function (event) {
+                this.$set(this.$data, "img_select", event.target.value);
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            inputblur: function (event) {
+                event.target.style.outline = "none";
+                event.stopPropagation();
+                event.preventDefault();
+            },
+            inputfocus: function (event) {
+                event.target.style.outline = "2px dotted red";
+                event.stopPropagation();
+                event.preventDefault();
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
