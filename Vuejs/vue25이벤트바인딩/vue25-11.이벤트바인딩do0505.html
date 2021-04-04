@@ -47,8 +47,8 @@
             Vue.js 에서 이벤트 핸들러에 매개변수를 넘기는 방법. <br>
             event.target.dataset 을 사용하여 접근.
         </p>
-        <div>10씩 증가: {{sum10}}</div>
-        <button v-on:click="clickBtn10" data-num="10">10씩 증가</button>
+        <div>{{computedInput}}씩 증가: {{sum10}}</div>
+        <button v-on:click="clickBtn10" v-bind:data-num="computedInput">{{computedInput}}씩 증가</button>
         <hr />
     </div>
 
@@ -60,10 +60,6 @@
 
 <!-- vue 플러그인 임포트   -->
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
-<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
-<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
 <script>
     new Vue({
         /* edtmc^2w */
@@ -88,9 +84,7 @@
             },
             clickBtn10: function (event) {
                 console.log(event.target);
-                // debugger
-                var num = Number(event.target.dataset["num"]);   // data-num = "10"
-                this.$data.sum10 = this.$data.sum10 + num;
+                this.$set(this.$data, "sum10", this.$data.sum10 + Number(event.target.dataset["num"]));
             },
         },
         components: {
@@ -98,7 +92,9 @@
 
         },
         computed: {
-
+            computedInput: function () {
+                return this.$data.numInput ? this.$data.numInput : 10;
+            }
         },
         watch: {
 
