@@ -53,4 +53,52 @@
 </body>
 </html>
 
+
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    var childComponent = {
+        /* pdtmc^2w */
+        props: [] ,
+        template: `
+            <div>
+                <button v-on:click="showLog">show</button>
+            </div>
+        `,
+        methods: {
+            showLog: function (event) {
+                // 부모에게 보낼 이벤트 발생
+                // 질문. 부모에게 보낼 이벤트는 어디에서 정의하나? 태그 선언시에 정의됨.
+                // <child-component v-on:show-log="printText"></child-component>
+                // <컴포넌트명 v-on:자식이 발생시킬 이벤트="부모가 실행할 이벤트">
+                // this.$emit("이벤트명", 인자1, 인자2, ...)
+                this.$emit("show-log", "abc", 123);
+            },
+        },
+    };
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            mesg: null,
+        },
+        //template: ``,
+        methods: {
+            printText: function (param1, param2) {
+                console.log(arguments);
+                this.$set(this.$data, "mesg", `${param1} : ${param2}`);
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+            "child-component": childComponent,
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
