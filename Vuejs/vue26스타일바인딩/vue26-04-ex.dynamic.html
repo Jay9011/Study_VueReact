@@ -69,3 +69,65 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            // state_value: 0,
+            state: "ready",
+            // msg: "ready",
+        },
+        //template: ``,
+        methods: {
+            change: function (event) {
+                // class 속성 => className 프로퍼티
+                // for 속성 => htmlFor 프로퍼티
+                if(event.target.className == "ready"){
+                    this.$set(this.$data, "state", "active");
+                }
+                else if(event.target.className == "active"){
+                    this.$set(this.$data, "state", "done");
+                }
+                else if(event.target.className == "done"){
+                    this.$set(this.$data, "state", "ready");
+                }
+                // this.$set(this.$data, "state_value", ++this.$data.state_value % 3);
+            }
+        },
+        computed: {
+            msg: function () {
+                return this.$data.state;
+            }
+        },
+        watch: {
+            // state_value: function (state_value) {
+            //     console.log(`state_value: ${state_value}`);
+            //     switch (state_value) {
+            //         case 0:
+            //             this.$set(this.$data, "state", "ready");
+            //             this.$set(this.$data, "msg", "ready");
+            //             break;
+            //         case 1:
+            //             this.$set(this.$data, "state", "active");
+            //             this.$set(this.$data, "msg", "active");
+            //             break;
+            //         case 2:
+            //             this.$set(this.$data, "state", "done");
+            //             this.$set(this.$data, "msg", "done");
+            //             break;
+            //         default:
+            //             break;
+            //     }
+            // }
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
