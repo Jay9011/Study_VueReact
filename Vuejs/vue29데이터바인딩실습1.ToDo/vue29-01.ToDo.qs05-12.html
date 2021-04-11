@@ -295,4 +295,81 @@
 
 </html>
 
+
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    var vm = new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            newTodoItem: null,
+            showModal: null,
+            todoItems: [
+                { id: 1, todo: "영화보기", done: false },
+                { id: 2, todo: "주말 산책", done: true },
+                { id: 3, todo: "ES6 학습", done: false },
+                { id: 4, todo: "잠실 야구장", done: false }
+            ],
+        },
+        //template: ``,
+        methods: {
+            checked: function(done){
+                return done ? "checked" : undefined;
+            },
+            addTodo: function (event) {
+                /*
+                todoItems에서 최대 id 값을 구하는 방법.
+                방법1. todoItems.reduce()
+                방법2. todoItems.map() 를 사용하는 방법
+                */
+                var maxObj = null;
+                if(this.$data.todoItems.length === 0){
+                    maxObj = {
+                        id: 0,
+                    }
+                }
+                else {
+                    maxObj = this.$data.todoItems.reduce((preItem, curItem, index, array) => {
+                        // 최대 id 값을 갖고 있는 Item을 return을 반환
+                        return preItem.id > curItem.id ? preItem : curItem;
+                    });
+                }
+                var todo = {
+                    id: maxObj.id + 1,
+                    done: false,
+                    todo: this.$data.newTodoItem,
+                }
+                // this.$data.todoItems.push(obj);
+                // this.$data.todoItems[this.$data.todoItems.length] = obj;
+                this.$set(this.$data.todoItems, this.$data.todoItems.length + "", todo);
+            },
+            doneToggle: function(id, index){
+
+            },
+            removeTodo: function(id, index){
+
+            },
+            clearAll: function(event) {
+
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>
