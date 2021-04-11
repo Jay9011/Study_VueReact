@@ -95,4 +95,52 @@
 
 </html>
 
+
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+  var componentChild = {
+      /* pdtmc^2w */
+      props: ["num"] ,
+      template: `
+        <div class="component-child">
+              Child counter : {{ num }} <br>
+              <button name="child" v-on:click="addCounter">+</button>
+              <button name="child" v-on:click="subCounter">-</button>
+          </div>
+      `,
+      methods: {
+        addCounter: function (event) {
+          this.$emit("add-counter", event, +1);
+        },
+        subCounter: function (event) {
+          this.$emit("sub-counter", event, -1);
+        },
+      },
+  };
+  new Vue({
+      el: "#app",
+      data: {
+        counter: 0,
+      },
+      methods: {
+        addCounter: function (event, calc) {
+          this.$set(this.$data, "counter", this.$data.counter + calc);
+        },
+        subCounter: function (event, calc){
+          this.$set(this.$data, "counter", this.$data.counter + calc);
+        }
+      },
+      components: {
+        "component-child": componentChild,
+      },
+      mounted: function() {
+          console.log("mounted");
+      },
+      updated: function() {
+          console.log("updated");
+      },
+  });
+
+
+</script>
