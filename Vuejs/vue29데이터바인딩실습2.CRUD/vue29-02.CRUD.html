@@ -115,3 +115,51 @@
 </body>
 
 </html>
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            user: {
+                name: null,
+                power: null,
+            },
+            list: [
+                {id:1, name: "슈퍼맨", power: 100},
+                {id:2, name: "아쿠아맨", power: 300},
+                {id:3, name: "스파이더맨", power: 500},
+                {id:4, name: "배트맨", power: 30},
+            ],
+        },
+        //template: ``,
+        methods: {
+            doIns: function(event) {
+
+            },
+            doUp: function(index){
+                this.$set(this.$data.list[index], "power", this.$data.list[index].power + 100);
+            },
+            doDown: function(index){
+                this.$set(this.$data.list[index], "power", this.$data.list[index].power - 50);
+            },
+            doEdit: function(index){
+
+            },
+            doDel: function(index){
+                this.$data.list.splice(index, 1);
+            },
+        },
+        mounted: function() {
+            console.log("mounted");
+            this.$refs.myinput.focus();
+        },
+        updated: function() {
+            console.log("updated");
+            this.$refs.myinput.focus();
+        },
+    });
+
+</script>
