@@ -277,7 +277,7 @@
                     {{ todoItem.todo }}
                     <span class="removeBtn"
                           type="button"
-                          v-on:click="removeTodo(todoItem.id, index)">
+                          v-on:click.stop="removeTodo(todoItem.id, index)">
                         <i class="far fa-trash-alt" aria-hidden="true"></i>
                     </span>
                 </li>
@@ -347,7 +347,6 @@
                 this.$set(this.$data, "newTodoItem", "");
             },
             doneToggle: function(id, index){
-                debugger;
                 // this.$data.todoItems["index"].done = !this.$data.todoItems["index"].done;
                 this.$set(this.$data.todoItems[index], "done", !this.$data.todoItems[index].done);
             },
@@ -355,8 +354,8 @@
                 // 한개 삭제
                 this.$data.todoItems.splice(index, 1);
                 // v-on: .stop 을 대신하는 코드
-                event.preventDefault();
-                event.stopPropagation();
+                // event.preventDefault();
+                // event.stopPropagation();
             },
             clearAll: function(event) {
                 // 전체 삭제
