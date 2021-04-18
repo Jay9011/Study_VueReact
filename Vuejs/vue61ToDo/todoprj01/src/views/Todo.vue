@@ -93,14 +93,27 @@ export default {
             }
         },
         doneToggle: function (id, index) {
-            if (this.$data.todoItems[index]["id"] !== id) {
-                return;
+            // update
+            // object array 에서 찾는 방법
+            // 1. array.findIndex()을 사용하는 방법
+            // 2. array.filter()을 사용하는 방법
+            index = this.$data.todoItems.findIndex(function (item) {
+                //return item.id === id;
+                if (item.id === id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            if (index >= 0) {
+                //this.$data.todoItems[index].done = !this.$data.todoItems[index].done;
+                this.$set(
+                    this.$data.todoItems[index],
+                    "done",
+                    !this.$data.todoItems[index].done
+                );
             }
-            this.$set(
-                this.$data.todoItems[index],
-                "done",
-                !this.$data.todoItems[index]["done"]
-            );
         },
         removeTodo: function (id, index) {
             if (this.$data.todoItems[index]["id"] !== id) {
