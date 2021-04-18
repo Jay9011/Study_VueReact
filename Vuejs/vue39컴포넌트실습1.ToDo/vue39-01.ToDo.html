@@ -233,12 +233,10 @@
     <hr>
 
     <div id="app">
-
         <!-- TodoHeader -->
         <header>
             <h1>TODO it!</h1>
         </header>
-
         <!-- TodoInput -->
         <div class="inputBox shadow">
             <input type="text"
@@ -248,14 +246,12 @@
             <span class="addContainer" v-on:click="addTodo">
                 <i class="addBtn fas fa-plus" aria-hidden="true"></i>
             </span>
-
             <div class="modal-mask" v-on:keyup.esc="$emit('close')" v-if="showModal" v-on:close="showModal = false">
                 <div class="modal-wrapper">
                     <div class="modal-container">
                         <div class="modal-header">
                             <h3 slot="header">경고</h3>
                         </div>
-
                         <div class="modal-footer">
                             <span v-on:click="showModal = false">
                                 할 일을 입력하세요.
@@ -266,7 +262,6 @@
                 </div>
             </div>
         </div>
-
         <!-- TodoList -->
         <section>
             <transition-group name="list" tag="ul">
@@ -284,18 +279,186 @@
                 </li>
             </transition-group>
         </section>
-
         <!-- TodoFooter -->
         <div class="clearAllContainer">
             <span class="clearAllBtn" v-on:click="clearAll">Clear All</span>
         </div>
-
     </div>
 
-
-
+    <script type="text/x-template" id="template1">
+        <div id="app">
+            <!-- TodoHeader -->
+            <todo-header/>
+            <!-- TodoInput -->
+            <todo-input/>
+            <!-- TodoList -->
+            <todo-list v-bind:todoItems="todoItems"/>
+            <!-- TodoFooter -->
+            <todo-footer/>
+        </div>
+    </script>
 </body>
-
 </html>
-
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    var TodoHeader = {
+        template: `
+        <header>
+            <h1>TODO it!</h1>
+        </header>
+        `,
+    };
+    var TodoInput = {
+        /* pdtmc^2w */
+        props: [] ,
+        data: function() {
+            return {
+                newTodoItem: null,
+                showModal: false,
+            }
+        },
+        template: `
+        <div class="inputBox shadow">
+            <input type="text"
+                placeholder="Type what you have to do"
+                v-model.trim:value="newTodoItem"
+                v-on:keyup.enter="addTodo" />
+            <span class="addContainer" v-on:click="addTodo">
+                <i class="addBtn fas fa-plus" aria-hidden="true"></i>
+            </span>
+            <div class="modal-mask" v-on:keyup.esc="$emit('close')" v-if="showModal" v-on:close="showModal = false">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <h3 slot="header">경고</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <span v-on:click="showModal = false">
+                                할 일을 입력하세요.
+                                <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `,
+        methods: {
+            addTodo: function (event) {
+                console.log(event.target);
+            }
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+            /* 자동처리 + 동기식. 메서드로 작성. return 필수. */
+
+        },
+        watch: {
+            /* 자동처리 + 비동기식. data 에 등록된 프로퍼티 모니터링. 메서드로 작성. 매개변수 입력 필수  */
+
+        },
+    };
+    var TodoList = {
+        /* pdtmc^2w */
+        props: [
+            "todoItems",
+        ] ,
+        data: function() {
+            return {
+            }
+        },
+        template: `
+        <section>
+            <transition-group name="list" tag="ul">
+                <li v-for="(todoItem, index) in todoItems"
+                    v-bind:key="todoItem.id"
+                    v-bind:class="checked(todoItem.done)"
+                    v-on:click="doneToggle(todoItem.id, index)">
+                    <i class="checkBtn fas fa-check" aria-hidden="true"></i>
+                    {{ todoItem.todo }}
+                    <span class="removeBtn"
+                          type="button"
+                          v-on:click="removeTodo(todoItem.id, index)">
+                        <i class="far fa-trash-alt" aria-hidden="true"></i>
+                    </span>
+                </li>
+            </transition-group>
+        </section>
+        `,
+        methods: {
+            checked: function(done){
+
+            },
+            doneToggle: function(id, index){
+
+            },
+            removeTodo: function(id, index){
+
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+            /* 자동처리 + 동기식. 메서드로 작성. return 필수. */
+
+        },
+        watch: {
+            /* 자동처리 + 비동기식. data 에 등록된 프로퍼티 모니터링. 메서드로 작성. 매개변수 입력 필수  */
+
+        },
+    };
+    var TodoFooter = {
+        template: `
+        <div class="clearAllContainer">
+            <span class="clearAllBtn" v-on:click="clearAll">Clear All</span>
+        </div>
+        `,
+        methods: {
+            clearAll: function (event) {
+
+            },
+        },
+    };
+
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            todoItems: [
+                { id: 1, todo: "영화보기", done: false },
+                { id: 2, todo: "주말 산책", done: true },
+                { id: 3, todo: "ES6 학습", done: false },
+                { id: 4, todo: "잠실 야구장", done: false }
+            ]
+        },
+        template: `#template1`,
+        methods: {
+
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+            'todo-header': TodoHeader,
+            'todo-input': TodoInput,
+            'todo-list': TodoList,
+            'todo-footer': TodoFooter,
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+</script>
