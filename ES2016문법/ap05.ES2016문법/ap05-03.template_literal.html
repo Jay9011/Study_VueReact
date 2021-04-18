@@ -20,4 +20,25 @@
 </html>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script type="text/babel">
+var string1 = '안녕하세요.';
+var string2 = '반갑습니다.';
+var greeting = `${string1} ${string2}`;
+console.log(greeting);
 
+var product = { name: '도서', price: '4200원'};
+var message = `
+    제품 ${product.name}의 가격은 ${product.price} 입니다.
+`;
+console.log(message);
+
+var value1 = 1;
+var value2 = 2;
+var operator1 = `곱셈값은 ${value1 * value2}입니다.`;
+var operator2 = `${value1 == value2 ? '참' : '거짓'}입니다.`;
+console.log(operator1);
+console.log(operator2);
+</script>
