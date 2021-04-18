@@ -103,8 +103,6 @@ export default {
             );
         },
         removeTodo: function (id, index) {
-            window.event.preventDefault();
-            window.event.stopPropagation();
             if (this.$data.todoItems[index]["id"] !== id) {
                 return;
             }

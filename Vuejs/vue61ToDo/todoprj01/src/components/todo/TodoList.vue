@@ -84,6 +84,8 @@ export default {
             this.$emit("doneToggle", id, index);
         },
         removeTodo: function (id, index) {
+            window.event.preventDefault();
+            window.event.stopPropagation();
             this.$emit("removeTodo", id, index);
         }
     },
