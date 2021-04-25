@@ -45,7 +45,7 @@
     console.log(x4, z4);
 
     /*============================*/
-    /* 객체의 부분할당 */
+    /* 객체의 분해 할당 */
     const car = {
         type: "t",
         color: "S",
@@ -61,5 +61,10 @@
     /* 분해 할당 (ES2016) */
     const {type, color, model, gear} = car;
     console.log(type, color, model, gear);
+
+    const p1 = { name: '홍길동', age: 20, gender: 'M' };
+    // p1.name을 분해 할당을 사용하여 n 변수로 값 추출 ( 다른 변수로 값 추출 )
+    const {name: n} = p1;   // 타입 { key: 할당할변수명 }
+    console.log(n);
 </script>
 
