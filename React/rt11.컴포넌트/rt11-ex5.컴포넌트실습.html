@@ -80,33 +80,108 @@
     <hr />
 
     <div id="app">
-        <!-- ComponentHeader -->
-        <header>
-            Header
-        </header>
 
-        <!-- ComponentContent -->
-        <div id="content">
-            <p>Content</p>
-
-            <!-- ComponentAside -->
-            <aside>
-                Aside
-            </aside>
-
-            <!-- ComponentContentList -->
-            <div id="content-list">
-                List
-            </div>
-        </div>
-
-        <!-- ComponentFooter -->
-        <footer>
-            Footer
-        </footer>
     </div>
+    <hr />
+    <xmp>
+        -------------------- 참고 할 코드 --------------------
+        <div id="app">
+            <!-- ComponentHeader -->
+            <header>
+                Header
+            </header>
+
+            <!-- ComponentContent -->
+            <div id="content">
+                <p>Content</p>
+
+                <!-- ComponentAside -->
+                <aside>
+                    Aside
+                </aside>
+
+                <!-- ComponentContentList -->
+                <div id="content-list">
+                    List
+                </div>
+            </div>
+
+            <!-- ComponentFooter -->
+            <footer>
+                Footer
+            </footer>
+        </div>
+    </xmp>
 </body>
 
 </html>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from "react" */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from "react-dom" */
+</script>
+<script type="text/babel">
+    class ComponentHeader extends React.Component {
+        render() { // JSX로 화면 만들기
+            return (
+                <header>
+                    Header
+                </header>
+            )
+        }
+    };
+    class ComponentContent extends React.Component {
+        render() {
+            return (
+                <div id="content">
+                    <p>Content</p>
+                    <ComponentAside></ComponentAside>
+                    <ComponentContentList></ComponentContentList>
+                </div>
+            )
+        }
+    };
+    class ComponentAside extends React.Component {
+        render() {
+            return (
+                <aside>
+                    Aside
+                </aside>
+            )
+        }
+    }
+    class ComponentContentList extends React.Component {
+        render() {
+            return (
+                <div id="content-list">
+                    List
+                </div>
+            )
+        }
+    }
+    class ComponentFooter extends React.Component {
+        render() {
+            return (
+                <footer>
+                    Footer
+                </footer>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <React.Fragment>
+            <ComponentHeader></ComponentHeader>
+            <ComponentContent></ComponentContent>
+            <ComponentFooter></ComponentFooter>
+        </React.Fragment>
+        , document.getElementById("app")
+    )
+</script>
 
