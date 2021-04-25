@@ -35,10 +35,6 @@
     <hr>
 
     <div id="app">
-        <h3>세종대왕</h3>
-        <h3>이순신</h3>
-        <h3>광개토</h3>
-        <h3>왕건</h3>
 	</div>
 </body>
 
@@ -48,5 +44,33 @@
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from "react" */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from "react-dom" */
+</script>
+<script type="text/babel">
+    class King extends React.Component {
+        render() {
+            return(
+                <h3>{ this.props.name }</h3>
+            )
+        }
+    }
+    ReactDOM.render(
+        <React.Fragment>
+            <King name="세종대왕"></King>
+            <King name="이순신"></King>
+            <King name="광개토"></King>
+            <King name="왕건"></King>
+        </React.Fragment>
+        , document.getElementById("app")
+    )
+
+</script>
 
 
