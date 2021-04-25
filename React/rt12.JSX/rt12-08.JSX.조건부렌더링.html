@@ -41,3 +41,76 @@
 </html>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from "react" */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from "react-dom" */
+</script>
+<script type="text/babel">
+    class UserGreeting extends React.Component {
+        render(){
+            return(
+                <h1>Welcome back!</h1>
+            )
+        }
+    } // end UserGreeting class
+    class GuestGreeting extends React.Component {
+        render(){
+            return(
+                <h1>Please sign up.</h1>
+            )
+        }
+    } // end GuestGreeting class
+    class Greeting extends React.Component {
+        constructor(props){
+            super();
+        }
+        state = {
+            isLoggedIn: true
+        }
+        render(){
+            /* === if-else 사용 === */
+            // let isLoggedIn = this.state.isLoggedIn;
+            // let msg;
+            // if(isLoggedIn){
+            //     msg = <UserGreeting />;
+            // } else {
+            //     msg = <GuestGreeting />;
+            // }
+            // return(
+            //     <React.Fragment>
+            //         {msg}
+            //     </React.Fragment>
+            // )
+            /* === 삼항 연산자 사용 === */
+            // return (
+            //     <React.Fragment>
+            //         {
+            //             this.props.isLoggedIn
+            //             ? <UserGreeting />
+            //             : <GuestGreeting />
+            //         }
+            //     </React.Fragment>
+            // )
+            /* === && 연산자 사용 === */
+            return (
+                <React.Fragment>
+                    {
+                        this.props.isLoggedIn && <UserGreeting />
+                    }
+                    {
+                        !this.props.isLoggedIn && <GuestGreeting />
+                    }
+                </React.Fragment>
+            )
+        }
+    } // end Greeting class
+    ReactDOM.render(
+        <Greeting isLoggedIn={true}></Greeting>
+        , document.getElementById("app")
+    )
+</script>
