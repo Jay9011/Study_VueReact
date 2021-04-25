@@ -40,3 +40,43 @@
 </html>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from "react" */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from "react-dom" */
+</script>
+<script type="text/babel">
+    // HelloWorld 컴포넌트를 만들고 반복 사용하기
+    class HelloWorld extends React.Component {
+        constructor(props) {
+            super();
+        }
+        // end constructor(props)
+        state = {
+            msg: `Hello, React world!!!`,
+        }
+        // end state
+        render(){
+            return(
+                <div>{ this.state.msg } { this.props.index }- component</div>
+            )
+        }
+        // end render()
+    }
+    // end class HelloWorld
+    const arrs = [1, 2, 3, 4, 5];
+    ReactDOM.render(
+        <React.Fragment>
+            {
+                arrs.map((value, index) => {
+                    return <HelloWorld key={index} index={ value }></HelloWorld>
+                })
+            }
+        </React.Fragment>,
+        document.getElementById("app")
+    );
+</script>
